@@ -42,6 +42,27 @@
           });
         });
       });
+
+      document.addEventListener('keydown', event => {
+        if (event.code === 'Space') {
+          for(let i = 0; i < playerButtons.length; i++) {
+            let button = playerButtons[i];
+            if (button.classList.contains("selected")) {
+              button.classList.remove('selected');
+              if (button.nextSibling) {
+                button.nextSibling.classList.add('selected');
+                break;
+              } else {
+                buttonHolder.firstChild.classList.add('selected');
+                break;
+              }
+            } else if (button === buttonHolder.lastChild) {
+              buttonHolder.firstChild.classList.add('selected');
+            }
+          }
+        }
+      })
     });
+    
   </script>
 </html>
