@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Cheers Govna!</title>
+    <link rel='stylesheet' href='stylin.css' >
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Cheers Govna!</h1>
+    <div class='form-section'>
+      <h3>Enter players here</h3>
+      <input class='players' type='text'></input>
+      <div class='enter-player-form-submit'>
+        We're all here
+      </div>
+    </div>
+    <div class='button-holder'>
+    </div>
+  </body>
+  <script>
+    const enterButton = document.querySelector('.enter-player-form-submit');
+    enterButton.addEventListener('click', () => {
+      const inputPlayers = document.querySelector('.players').value.split(',');
+      const buttonHolder = document.querySelector('.button-holder');
+      let buttonHTML = '';
+
+      inputPlayers.forEach((player, i) => {
+        buttonHTML += `<div class='player-button' id=${player}>${player}</div>`
+      });
+
+      buttonHolder.innerHTML = buttonHTML;
+
+      const playerButtons = document.querySelectorAll('.player-button');
+
+      playerButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          button.classList.add('selected');
+          playerButtons.forEach((sib) => {
+            if (sib.id !== button.id) {
+              sib.classList.remove('selected');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</html>
